@@ -1,5 +1,5 @@
 # Use lightweight Java image
-FROM openjdk:17-jdk
+FROM eclipse-temurin:17-jdk-jammy
 
 # Set working directory
 WORKDIR /app
