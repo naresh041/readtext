@@ -48,7 +48,7 @@ pipeline {
                   # Remove old container (safe)
                 docker rm -f $CONTAINER_NAME || true
                 # Run new container
-                docker run -d -p 8081:8081 --name $CONTAINER_NAME $DOCKER_IMAGE:$DOCKER_TAG
+                docker run -d -p 8081:8080 --name $CONTAINER_NAME $DOCKER_IMAGE:$DOCKER_TAG
                 '''
             }
         }
