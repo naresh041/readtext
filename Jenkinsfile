@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'readtext/app'
         DOCKER_TAG = 'latest'
+        CONTAINER_NAME = 'readtext-container'
     }
 
     stages {
@@ -44,9 +45,10 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 sh '''
-                docker stop springboot-container || true
-                docker rm springboot-container || true
-                docker run -d -p 8080:8080 --name springboot-container $DOCKER_IMAGE:$DOCKER_TAG
+                  # Remove old container (safe)
+                docker rm -f $CONTAINER_NAME || true
+                # Run new container
+                docker run -d -p 8081:8081 --name $CONTAINER_NAME $DOCKER_IMAGE:$DOCKER_TAG
                 '''
             }
         }
